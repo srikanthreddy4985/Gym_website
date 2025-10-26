@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* theme helpers */
+.btn-primary { @apply inline-flex items-center justify-center px-6 py-3 rounded-md bg-gym-red text-white font-semibold hover:opacity-90 transition; }
+.btn-secondary { @apply inline-flex items-center justify-center px-6 py-3 rounded-md bg-gym-red/0 border border-gym-red text-gym-red hover:bg-gym-red hover:text-white transition; }
+.container-xl { @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8; }
+

@@ -1,0 +1,82 @@
+# --- OS-specific ---
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+*.manifest
+*.spec
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+env.bak/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+
+# --- Node.js ---
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+.pnpm-debug.log*
+
+# --- Environments / Config ---
+.env
+.env.*
+!.env.example
+
+# --- IDEs / Editors ---
+.vscode/
+.idea/
+*.swp
+*.swo
+*.sublime-workspace
+*.sublime-project
+
+# --- Logs / Temp ---
+*.log
+logs/
+tmp/
+temp/
+
+# --- Test / Coverage ---
+coverage/
+*.cover
+*.py,cover
+htmlcov/
+.cache/
+nosetests.xml
+coverage.xml
+*.lcov
+
+# --- Others ---
+*.bak
+*.old
+*.tmp
+*.orig
+*.rej
+
+# --- Local data / secrets ---
+secrets.json
+credentials.json
