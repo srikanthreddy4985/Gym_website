@@ -26,10 +26,10 @@ export default function Home() {
         <h2 className="text-3xl font-bold">Our Services</h2>
         <div className="grid md:grid-cols-4 gap-6 mt-8">
           {[
-            { title: 'Weight Training', img: 'https://images.unsplash.com/photo-1517963879433-6ad2b056d04c?q=80&w=1600&auto=format&fit=crop' },
-            { title: 'Cardio', img: 'https://images.unsplash.com/photo-1546483875-ad9014c88eba?q=80&w=1600&auto=format&fit=crop' },
-            { title: 'CrossFit', img: 'https://images.unsplash.com/photo-1554298063-7e63f5653ed2?q=80&w=1600&auto=format&fit=crop' },
-            { title: 'Yoga', img: 'https://images.unsplash.com/photo-1518611012118-696072aa579a?q=80&w=1600&auto=format&fit=crop' },
+            { title: 'Weight Training', img: 'https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=80&w=1600&auto=format&fit=crop' },
+            { title: 'Cardio', img: 'https://images.unsplash.com/photo-1538805060514-97d9cc17730c?q=80&w=1600&auto=format&fit=crop' },
+            { title: 'CrossFit', img: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1600&auto=format&fit=crop' },
+            { title: 'Yoga', img: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=1600&auto=format&fit=crop' },
           ].map((s) => (
             <div key={s.title} className="group relative overflow-hidden rounded-xl border border-white/5">
               <img src={s.img} alt={s.title} className="w-full h-48 object-cover group-hover:scale-105 transition" />
@@ -67,13 +67,13 @@ export default function Home() {
         <h2 className="text-3xl font-bold">Pricing Plans</h2>
         <div className="grid md:grid-cols-3 gap-6 mt-8">
           {[
-            { name: 'Monthly', price: 29, features: ['Gym Access', '1 Class/Week'] },
-            { name: 'Quarterly', price: 79, features: ['Gym Access', '3 Classes/Week'] },
-            { name: 'Yearly', price: 249, features: ['All Access', 'Unlimited Classes'] },
+            { name: 'Monthly', price: '2,900', features: ['Gym Access', '1 Class/Week'] },
+            { name: 'Quarterly', price: '7,900', features: ['Gym Access', '3 Classes/Week'] },
+            { name: 'Yearly', price: '24,900', features: ['All Access', 'Unlimited Classes'] },
           ].map((p) => (
             <div key={p.name} className="rounded-xl border border-white/10 bg-white/5 p-6 flex flex-col">
               <div className="text-xl font-bold">{p.name}</div>
-              <div className="text-4xl font-extrabold mt-2">${p.price}<span className="text-base text-gray-400">/mo</span></div>
+              <div className="text-4xl font-extrabold mt-2">₹{p.price}<span className="text-base text-gray-400">/mo</span></div>
               <ul className="mt-4 space-y-2 text-gray-300 text-sm">
                 {p.features.map((f) => <li key={f}>• {f}</li>)}
               </ul>

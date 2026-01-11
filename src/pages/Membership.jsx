@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { motion } from 'framer-motion'
 import { loadStripe } from '@stripe/stripe-js'
 import { Link, useNavigate } from 'react-router-dom'
 
@@ -9,9 +10,9 @@ export default function Membership() {
   const navigate = useNavigate()
 
   const plans = [
-    { id: 'plan_monthly', name: 'Monthly', price: 2900, display: '$29/mo' },
-    { id: 'plan_quarterly', name: 'Quarterly', price: 7900, display: '$79/quarter' },
-    { id: 'plan_yearly', name: 'Yearly', price: 24900, display: '$249/year' },
+    { id: 'plan_monthly', name: 'Monthly', price: 2900, display: '₹2,900/mo' },
+    { id: 'plan_quarterly', name: 'Quarterly', price: 7900, display: '₹7,900/quarter' },
+    { id: 'plan_yearly', name: 'Yearly', price: 24900, display: '₹24,900/year' },
   ]
 
   function loadRazorpayScript() {
@@ -42,7 +43,7 @@ export default function Membership() {
           })
           const orderJson = await orderRes.json()
           if (orderRes.ok && orderJson.ok) order = orderJson.order
-        } catch {}
+        } catch { }
         const options = {
           key,
           amount: plan.price * 100, // paise (demo multiply to show amount clearly)
@@ -73,29 +74,67 @@ export default function Membership() {
 
   return (
     <div className="container-xl py-16">
-      <h1 className="text-4xl font-bold">Membership Plans</h1>
-      <p className="text-gray-300 mt-2">Choose a plan and start your transformation today.</p>
+      <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="mb-6"
+      >
+        <Link to="/" className="btn-secondary">Back</Link>
+      </motion.div>
+
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.1 }}
+      >
+        <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-white via-gray-200 to-gym-red bg-clip-text text-transparent">
+          Membership Plans
+        </h1>
+        <p className="text-gray-300 mt-2">Choose a plan and start your transformation today.</p>
+      </motion.div>
+
       <div className="grid md:grid-cols-3 gap-6 mt-8">
-        {plans.map((p) => (
-          <div key={p.id} className="rounded-xl border border-white/10 bg-white/5 p-6 flex flex-col">
-            <div className="text-xl font-bold">{p.name}</div>
-            <div className="text-3xl font-extrabold mt-2">{p.display}</div>
-            <ul className="mt-4 space-y-2 text-sm text-gray-300">
-              <li>• Full gym access</li>
-              <li>• Group classes</li>
-              <li>• Trainer guidance</li>
-            </ul>
-            <button disabled={loading} onClick={() => checkout(p)} className="btn-primary mt-6">{loading ? 'Processing...' : 'Pay Now'}</button>
-          </div>
+        {plans.map((p, idx) => (
+          <motion.div
+            key={p.id}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 + idx * 0.1 }}
+            whileHover={{ y: -8, transition: { duration: 0.3 } }}
+            className="group relative rounded-xl border border-white/10 bg-gradient-to-br from-white/5 to-white/[0.02] p-6 flex flex-col overflow-hidden"
+          >
+            {/* Gradient overlay on hover */}
+            <div className="absolute inset-0 bg-gradient-to-br from-gym-red/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+            <div className="relative z-10">
+              <div className="text-xl font-bold">{p.name}</div>
+              <div className="text-3xl font-extrabold mt-2 bg-gradient-to-r from-gym-red to-red-400 bg-clip-text text-transparent">
+                {p.display}
+              </div>
+              <ul className="mt-4 space-y-2 text-sm text-gray-300">
+                <li className="flex items-center gap-2">
+                  <span className="text-gym-red">✓</span> Full gym access
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="text-gym-red">✓</span> Group classes
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="text-gym-red">✓</span> Trainer guidance
+                </li>
+              </ul>
+              <motion.button
+                disabled={loading}
+                onClick={() => checkout(p)}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="btn-primary mt-6 w-full relative overflow-hidden"
+              >
+                {loading ? 'Processing...' : 'Pay Now'}
+              </motion.button>
+            </div>
+          </motion.div>
         ))}
-      </div>
-
-      <div className="mt-10 text-sm text-gray-400">
-        Prefer Razorpay or PayPal? We can enable them with live keys.
-      </div>
-
-      <div className="mt-8">
-        <Link to="/" className="btn-secondary">Back to Home</Link>
       </div>
     </div>
   )
